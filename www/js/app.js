@@ -12,7 +12,7 @@ angular
           controller: 'PictureCtrl',
           controllerAs: 'vm'
         })
-        .when('/picture/:id?', {
+        .when('/picture/:tab?', {
           templateUrl: 'views/picture.html',
           controller: 'PictureCtrl',
           controllerAs: 'vm'
@@ -22,7 +22,7 @@ angular
         });
 
     $mdThemingProvider.theme('default')
-      .primaryPalette('light-blue')
-      .accentPalette('teal');
+      .primaryPalette('blue-grey')
+      .accentPalette('light-blue');
   });
 

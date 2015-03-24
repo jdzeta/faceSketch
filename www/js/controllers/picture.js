@@ -5,19 +5,19 @@ angular
 
     self.tabs = [
       {
-        name: 'Camera',
+        name: 'camera',
         template: 'views/camera.html'
       },
       {
-        name: 'Gallery',
+        name: 'gallery',
         template: 'views/gallery.html'
       }
     ];
 
-    self.currentTab;
+    self.currentTab = $routeParams.tab || 'camera';
 
-    self.tabSelect = function(index){
-      self.currentTab = index.template;
+    self.tabSelect = function(tab){
+      self.currentTab = tab.name;
     }
 
   });

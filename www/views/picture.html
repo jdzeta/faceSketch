@@ -1,13 +1,6 @@
-<div>
-  <h1>picture</h1>
-</div>
-<div>
-  <div ng-include="vm.currentTab"></div>
-</div>
 <md-tabs>
-  <md-tab ng-repeat="tab in vm.tabs" md-on-select="vm.tabSelect(tab)">
+  <md-tab ng-repeat="tab in vm.tabs" md-on-select="vm.tabSelect(tab)" md-active="vm.currentTab == tab.name">
     <md-tab-label>{{tab.name}}</md-tab-label>
+    <div ng-include="tab.template"></div>
   </md-tab>
-  <!-- <md-tab label="Gallery" md-on-select="vm.tabSelect()"></md-tab> -->
-  <!-- <md-tab label="Camera" md-on-select="vm.tabSelect()"></md-tab> -->
 </md-tabs>

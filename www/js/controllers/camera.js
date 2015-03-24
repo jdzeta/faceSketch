@@ -3,6 +3,7 @@
     .module('FaceSketch')
     .controller('CameraCtrl', function (){
       var self = this;
+      self.ready = false;
       console.log('camera');
 
       if (typeof(cordova) == 'undefined'){
@@ -10,27 +11,31 @@
         console.log('Camera not found');
       }
 
-      document.addEventListener("deviceready", function () {
-        var options = {
-          quality: 50,
-          destinationType: Camera.DestinationType.DATA_URL,
-          sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
-          encodingType: Camera.EncodingType.JPEG,
-          targetWidth: 320,
-          targetHeight: 320,
-          popoverOptions: CameraPopoverOptions,
-          saveToPhotoAlbum: false
-        };
-
-        navigator.camera
-          .getPicture(options)
-          .then(function (imageData) {
-            alert('yep');
-            self.picture = "data:image/jpeg;base64," + imageData;
-          }, function (err) {
-            alert(err);
-          });
+      document.addEventListener("deviceready", function ($scope) {
+        console.log('deviceready');
+        self.ready = true;
       }, false);
+
+      self.shoot = function(){
+        console.log('shoot');
+        if(self.ready){
+          console.log('really, shoot');
+          navigator.camera.getPicture(onSuccess, onFail, {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA
+          });
+        }
+      }
+
+      function onSuccess(imageData) {
+        console.log('success');
+        self.picture = "data:image/jpeg;base64," + imageData;
+      }
+
+      function onFail(message) {
+        console.log('error', message);
+        alert('Failed because: ' + message);
+      }
     });
 })();

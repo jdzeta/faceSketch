@@ -1,5 +1,5 @@
-<md-tab-content ng-controller="CameraCtrl as camera">
+<div ng-controller="CameraCtrl as camera">
   <h1>Camera</h1>
-  <div ng-if="camera.camera">Device is ready</div>
-  <img id="myImage" ng-src="camera.picture"></img>
-</md-tab-content>
+  {{camera.picture}}
+  <img ng-src="{{camera.picture}}"></img>
+</div>

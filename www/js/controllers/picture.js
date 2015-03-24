@@ -14,10 +14,10 @@ angular
       }
     ];
 
-    self.currentTab = $routeParams.tab || 'camera';
+    self.currentTab = _.findWhere(self.tabs, {name: $routeParams.tab}) || self.tabs[0];
 
     self.tabSelect = function(tab){
-      self.currentTab = tab.name;
+      self.currentTab = tab;
     }
 
   });

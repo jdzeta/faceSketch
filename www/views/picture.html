@@ -1,6 +1,6 @@
 <md-tabs>
-  <md-tab ng-repeat="tab in vm.tabs" md-on-select="vm.tabSelect(tab)" md-active="vm.currentTab == tab.name">
+  <md-tab ng-repeat="tab in vm.tabs" md-on-select="vm.tabSelect(tab)" md-active="vm.currentTab.name == tab.name">
     <md-tab-label>{{tab.name}}</md-tab-label>
-    <div ng-include="tab.template"></div>
   </md-tab>
 </md-tabs>
+<div ng-include="vm.currentTab.template"></div>

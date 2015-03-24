@@ -1,20 +1,20 @@
 angular
   .module('FaceSketch')
-  .controller('PictureCtrl', function (){
+  .controller('PictureCtrl', function ($routeParams){
     var self = this;
-
-    self.currentTab;
 
     self.tabs = [
       {
-        name: 'Gallery',
-        template: 'views/gallery.html'
-      },
-      {
         name: 'Camera',
         template: 'views/camera.html'
+      },
+      {
+        name: 'Gallery',
+        template: 'views/gallery.html'
       }
     ];
+
+    self.currentTab;
 
     self.tabSelect = function(index){
       self.currentTab = index.template;

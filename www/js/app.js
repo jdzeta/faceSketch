@@ -12,6 +12,11 @@ angular
           controller: 'PictureCtrl',
           controllerAs: 'vm'
         })
+        .when('/picture/:id?', {
+          templateUrl: 'views/picture.html',
+          controller: 'PictureCtrl',
+          controllerAs: 'vm'
+        })
         .otherwise({
           redirectTo: '/'
         });

@@ -1,22 +1,30 @@
-angular
-  .module('FaceSketch')
-  .controller('CameraCtrl', function (){
-    var self = this;
+(function(){
+  angular
+    .module('FaceSketch')
+    .controller('CameraCtrl', function ($cordovaCamera){
+      var self = this;
 
-    document.addEventListener("deviceready", function () {
-      alert(navigator.camera);
-      navigator.camera.getPicture(onSuccess, onFail, {
-        quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL
-      });
+      document.addEventListener("deviceready", function () {
+        self.camera = true;
 
-      function onSuccess(imageData) {
-        var image = document.getElementById('myImage');
-        image.src = "data:image/jpeg;base64," + imageData;
-      }
+        var options = {
+          quality: 50,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.CAMERA,
+          allowEdit: true,
+          encodingType: Camera.EncodingType.JPEG,
+          targetWidth: 100,
+          targetHeight: 100,
+          popoverOptions: CameraPopoverOptions,
+          saveToPhotoAlbum: false
+        };
 
-      function onFail(message) {
-        alert('Failed because: ' + message);
-      }
-    }, false);
-  });
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+          alert('yep');
+          self.picture = "data:image/jpeg;base64," + imageData;
+        }, function(err) {
+          alert(err);
+        });
+      }, false);
+    });
+})();

@@ -9,6 +9,10 @@
                 "parents": {
                     "/*": [
                         {
+                            "xml": "<feature name=\"WebViewDebug\"><param name=\"android-package\" value=\"com.jamiestarke.webviewdebug.WebViewDebug\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
                             "count": 1
                         }
@@ -28,6 +32,9 @@
         }
     },
     "installed_plugins": {
+        "com.jamiestarke.webviewdebug": {
+            "PACKAGE_NAME": "com.faceplusplus.facesketch"
+        },
         "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.faceplusplus.facesketch"
         }

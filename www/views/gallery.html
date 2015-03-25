@@ -1,6 +1,8 @@
 <div id="gallery" ng-controller="GalleryCtrl as gallery">
 	<h1>Gallery</h1>
-	<div class="content">
-		<img alt="" id="myImage">
-	</div>
+	<ul>
+		<li ng-repeat="pic in gallery.images">
+			<img ng-src="{{pic.src}}" alt="">
+		</li>
+	</ul>
 </div>

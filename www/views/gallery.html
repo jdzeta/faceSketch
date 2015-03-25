@@ -2,7 +2,8 @@
 	<h1>Gallery</h1>
 	<br>
 	<a class="button" href="#/picture/gallery"><img src="assets/img/logo.png" alt="facesketch-icon" id="facesketch-icon"></a>
+	<md-button ng-click="gallery.testGetPics()">Change photo</md-button>
 	
 	<br>
-	<img id="lib_selected" ng-src="{{gallery.image.src}}" alt="Nothing here">
+	<img id="lib_selected" ng-src="{{gallery.image.src}}" alt="{{gallery.image.alt}}">
 </div>

@@ -18,17 +18,20 @@
 			allowEdit: true,
 			correctOrientation: true,
 			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY
 		});
 	}
 
 	self.onCaptureSuccess = function(imageData) {
-		//alert(imageData);
+		alert("Now : " + self.image.src.length);
+		var random = (new Date()).toString();
 		self.image.src = "data:image/jpeg;base64," + imageData;
+		self.image.alt = "New photo to draw";
+		alert("Now : " + self.image.src.length);
 	}
 
 	self.onCaptureFail = function(message) {
-	    alert('Failed because: ' + message);
+	    console.log('Failed because: ' + message);
 	}
 
 	// file://storage/sdcard0/Android/data/com.faceplusplus.facesketch/cache/##.jpg

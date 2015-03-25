@@ -1,5 +1,5 @@
 angular
-  .module('FaceSketch', ['ngMaterial', 'ngRoute', 'ngCordova'])
+  .module('FaceSketch', ['ngMaterial', 'ngRoute', 'ngCordova', 'ngImgur'])
   .config(function ($mdThemingProvider, $routeProvider) {
      $routeProvider
         .when('/', {

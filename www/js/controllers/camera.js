@@ -1,10 +1,11 @@
 (function(){
   angular
     .module('FaceSketch')
-    .controller('CameraCtrl', function (){
+    .controller('CameraCtrl', function (auth, facepp){
       var self = this;
       self.ready = false;
       console.log('camera');
+      self.picture;
 
       if (typeof(cordova) == 'undefined'){
         self.picture = 'http://placekitten.com/g/320/320';
@@ -31,6 +32,7 @@
       function onSuccess(imageData) {
         console.log('success');
         self.picture = "data:image/jpeg;base64," + imageData;
+        facepp.getLandmark(imageData);
       }
 
       function onFail(message) {

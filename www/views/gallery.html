@@ -1,8 +1,8 @@
 <div id="gallery" ng-controller="GalleryCtrl as gallery">
 	<h1>Gallery</h1>
-	<ul>
-		<li ng-repeat="pic in gallery.images">
-			<img ng-src="{{pic.src}}" alt="">
-		</li>
-	</ul>
+	<br>
+	<a class="button" href="#/picture/gallery"><img src="assets/img/logo.png" alt="facesketch-icon" id="facesketch-icon"></a>
+	
+	<br>
+	<img id="lib_selected" ng-src="{{gallery.image.src}}" alt="Nothing here">
 </div>

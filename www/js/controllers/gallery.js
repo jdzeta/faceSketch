@@ -23,11 +23,8 @@
 	}
 
 	self.onCaptureSuccess = function(imageData) {
-		alert("Now : " + self.image.src.length);
-		var random = (new Date()).toString();
 		self.image.src = "data:image/jpeg;base64," + imageData;
 		self.image.alt = "New photo to draw";
-		alert("Now : " + self.image.src.length);
 	}
 
 	self.onCaptureFail = function(message) {

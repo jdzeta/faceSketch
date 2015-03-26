@@ -132,15 +132,17 @@ span.name {
 h1, h2, h3 {width: 100%}
 
 /*Wrapper*/
-.ng-scope {
+#home,
+#gallery,
+h1, h2, h3 {
   text-align: center;
 }
 
 /*Boutons md*/
-.md-button.md-primary.md-fab.md-button.md-default-theme {
+#home .md-button.md-primary.md-fab.md-button.md-default-theme {
   font-size: 30px;
   height: auto;
-  margin: 20px auto;
+  margin: 20px 20px auto;
   padding: 30px;
   width: auto;
 }
@@ -164,5 +166,6 @@ h1, h2, h3 {width: 100%}
 #lib_selected {
   display: block;
   margin: 20px auto;
-  width: 300px;
+  height: 200px;
+  width: 200px;
 }

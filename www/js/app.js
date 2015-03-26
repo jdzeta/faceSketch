@@ -17,6 +17,11 @@ angular
           controller: 'PictureCtrl',
           controllerAs: 'vm'
         })
+        .when('/drawing', {
+          templateUrl: 'views/drawing.html',
+          controller: 'DrawingCtrl',
+          controllerAs: 'vm'
+        })
         .otherwise({
           redirectTo: '/'
         });

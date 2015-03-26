@@ -1,7 +1,7 @@
 (function(){
   angular
     .module('FaceSketch')
-    .controller('CameraCtrl', function (auth, facepp){
+    .controller('CameraCtrl', function (auth, facepp, sketch){
       var self = this;
       self.ready = false;
       console.log('camera');
@@ -19,20 +19,27 @@
 
       self.shoot = function(){
         console.log('shoot');
-        if(self.ready){
+        if(typeof(cordova) !== 'undefined' && self.ready){
           console.log('really, shoot');
           navigator.camera.getPicture(onSuccess, onFail, {
-            quality: 50,
+            quality: 100,
             destinationType: Camera.DestinationType.DATA_URL,
             sourceType: Camera.PictureSourceType.CAMERA
           });
+        } else if(typeof(cordova) == 'undefined'){
+          // Do something
         }
       }
 
       function onSuccess(imageData) {
         console.log('success');
         self.picture = "data:image/jpeg;base64," + imageData;
-        facepp.getLandmark(imageData);
+        facepp
+          .getLandmark(imageData)
+          .then(function(face){
+            sketch.setFace(face);
+            window.location = '#/drawing';
+          });
       }
 
       function onFail(message) {

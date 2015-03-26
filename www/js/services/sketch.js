@@ -12,6 +12,7 @@
         paper.setup('canvas');
       };
 
+
       return {
         setFace: function(face){
           fpp = face;
@@ -25,7 +26,7 @@
           var fpph = fpp.img_height;
 
           // background
-          var bg = paper.Shape.Circle(makePoint(fpp.nose_tip), 150);
+          var bg = paper.Shape.Circle(makePoint(fpp.nose_tip), 125);
           bg.fillColor = '#DF5E52';
 
           // chin
@@ -75,10 +76,11 @@
           // Face contour
           var headTop = new paper.Point(
               chin.lastSegment.point.x,
-              (chin.lastSegment.point.y - (leftChin.lastSegment.point.y / 1.3))
+              leftChin.firstSegment.point.y - (leftChin.firstSegment.point.y * .5)
             );
-          headTopHandleIn = new paper.Point(headTop.x - 150, headTop.y - 50);
-          headTopHandleOut = new paper.Point(headTop.x - 120, headTop.y - 50);
+          console.log(headTop.y);
+          headTopHandleIn = new paper.Point(-100, -100);
+          headTopHandleOut = new paper.Point(100, 100);
           var headTopSeg = new paper.Segment(headTop, headTopHandleIn, headTopHandleOut);
           var headTopPath = new paper.Path([
               leftChin.firstSegment,
@@ -161,22 +163,22 @@
             Helpers
           ***/
           function addToPath(path, pos){
-            var x = fppw * (pos.x / 150);
-            var y = fpph * (pos.y / 150);
+            var x = fppw * (pos.x / 125);
+            var y = fpph * (pos.y / 125);
             var point = new paper.Point(x, y);
             path.add(point);
           }
 
           function makePoint(pos){
-            var x = fppw * (pos.x / 150);
-            var y = fpph * (pos.y / 150);
+            var x = fppw * (pos.x / 125);
+            var y = fpph * (pos.y / 125);
             var point = new paper.Point(x, y);
             return point;
           }
 
           function makePath(pos){
-            var x = fppw * (pos.x / 150);
-            var y = fpph * (pos.y / 150);
+            var x = fppw * (pos.x / 125);
+            var y = fpph * (pos.y / 125);
             var point = new paper.Point(x, y);
             var path = new paper.Path();
             path.add(point);

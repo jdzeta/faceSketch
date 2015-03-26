@@ -4,6 +4,7 @@
     .controller('CameraCtrl', function (auth, facepp, sketch){
       var self = this;
       self.ready = false;
+      self.isLoading = false;
       console.log('camera');
       self.picture;
 
@@ -20,7 +21,7 @@
       self.shoot = function(){
         console.log('shoot');
         if(typeof(cordova) !== 'undefined' && self.ready){
-          console.log('really, shoot');
+          self.isLoading = true;
           navigator.camera.getPicture(onSuccess, onFail, {
             quality: 100,
             destinationType: Camera.DestinationType.DATA_URL,
@@ -37,6 +38,7 @@
         facepp
           .getLandmark(imageData)
           .then(function(face){
+            self.isLoading = false;
             sketch.setFace(face);
             window.location = '#/drawing';
           });

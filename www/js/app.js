@@ -1,5 +1,5 @@
 angular
-  .module('FaceSketch', ['ngMaterial', 'ngRoute', 'ngCordova'])
+  .module('FaceSketch', ['ngMaterial', 'ngRoute', 'ngCordova', 'ngImgur'])
   .config(function ($mdThemingProvider, $routeProvider) {
      $routeProvider
         .when('/', {
@@ -15,6 +15,11 @@ angular
         .when('/picture/:tab?', {
           templateUrl: 'views/picture.html',
           controller: 'PictureCtrl',
+          controllerAs: 'vm'
+        })
+        .when('/drawing', {
+          templateUrl: 'views/drawing.html',
+          controller: 'DrawingCtrl',
           controllerAs: 'vm'
         })
         .otherwise({

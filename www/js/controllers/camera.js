@@ -1,36 +1,50 @@
 (function(){
   angular
     .module('FaceSketch')
-    .controller('CameraCtrl', function (){
+    .controller('CameraCtrl', function (auth, facepp, sketch){
       var self = this;
+      self.ready = false;
       console.log('camera');
+      self.picture;
 
       if (typeof(cordova) == 'undefined'){
         self.picture = 'http://placekitten.com/g/320/320';
         console.log('Camera not found');
       }
 
-      document.addEventListener("deviceready", function () {
-        var options = {
-          quality: 50,
-          destinationType: Camera.DestinationType.DATA_URL,
-          sourceType: Camera.PictureSourceType.CAMERA,
-          allowEdit: true,
-          encodingType: Camera.EncodingType.JPEG,
-          targetWidth: 320,
-          targetHeight: 320,
-          popoverOptions: CameraPopoverOptions,
-          saveToPhotoAlbum: false
-        };
-
-        navigator.camera
-          .getPicture(options)
-          .then(function (imageData) {
-            alert('yep');
-            self.picture = "data:image/jpeg;base64," + imageData;
-          }, function (err) {
-            alert(err);
-          });
+      document.addEventListener("deviceready", function ($scope) {
+        console.log('deviceready');
+        self.ready = true;
       }, false);
+
+      self.shoot = function(){
+        console.log('shoot');
+        if(typeof(cordova) !== 'undefined' && self.ready){
+          console.log('really, shoot');
+          navigator.camera.getPicture(onSuccess, onFail, {
+            quality: 100,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA
+          });
+        } else if(typeof(cordova) == 'undefined'){
+          // Do something
+        }
+      }
+
+      function onSuccess(imageData) {
+        console.log('success');
+        self.picture = "data:image/jpeg;base64," + imageData;
+        facepp
+          .getLandmark(imageData)
+          .then(function(face){
+            sketch.setFace(face);
+            window.location = '#/drawing';
+          });
+      }
+
+      function onFail(message) {
+        console.log('error', message);
+        alert('Failed because: ' + message);
+      }
     });
 })();

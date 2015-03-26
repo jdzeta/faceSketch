@@ -1,0 +1,9 @@
+(function(){
+  angular
+  .module('FaceSketch')
+  .constant('auth', {
+    fpp_api_key: 'XXXXX',
+    fpp_api_secret: 'YYYY',
+    imgur_api_key: 'Client-ID XXXX'
+  })
+})();

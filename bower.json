@@ -14,7 +14,8 @@
     "angular-ui-router": "~0.2.13",
     "font-awesome": "~4.3.0",
     "ngCordova": "~0.1.14-alpha",
-    "lodash": "~3.5.0"
+    "lodash": "~3.5.0",
+    "ng-imgur": "~0.1.5"
   },
   "devDependencies": {
     "angular-material": "~0.8.3"

@@ -4,8 +4,8 @@
     .factory('sketch', function (){
       var fpp = {};
       function init(){
-        fpp.img_width = 360;
-        fpp.img_height = 360;
+        fpp.img_width = window.innerWidth;
+        fpp.img_height = window.innerWidth;
         document.querySelector('canvas').width = fpp.img_width;
         document.querySelector('canvas').height = fpp.img_height;
         paper.install(window);
@@ -77,8 +77,8 @@
               chin.lastSegment.point.x,
               (chin.lastSegment.point.y - (leftChin.lastSegment.point.y / 1.3))
             );
-          headTopHandleIn = new paper.Point(headTop.x - 275, headTop.y - 50);
-          headTopHandleOut = new paper.Point(headTop.x - 150, headTop.y - 50);
+          headTopHandleIn = new paper.Point(headTop.x - 150, headTop.y - 50);
+          headTopHandleOut = new paper.Point(headTop.x - 120, headTop.y - 50);
           var headTopSeg = new paper.Segment(headTop, headTopHandleIn, headTopHandleOut);
           var headTopPath = new paper.Path([
               leftChin.firstSegment,
@@ -161,22 +161,22 @@
             Helpers
           ***/
           function addToPath(path, pos){
-            var x = fppw * (pos.x / 100);
-            var y = fpph * (pos.y / 100);
+            var x = fppw * (pos.x / 150);
+            var y = fpph * (pos.y / 150);
             var point = new paper.Point(x, y);
             path.add(point);
           }
 
           function makePoint(pos){
-            var x = fppw * (pos.x / 100);
-            var y = fpph * (pos.y / 100);
+            var x = fppw * (pos.x / 150);
+            var y = fpph * (pos.y / 150);
             var point = new paper.Point(x, y);
             return point;
           }
 
           function makePath(pos){
-            var x = fppw * (pos.x / 100);
-            var y = fpph * (pos.y / 100);
+            var x = fppw * (pos.x / 150);
+            var y = fpph * (pos.y / 150);
             var point = new paper.Point(x, y);
             var path = new paper.Path();
             path.add(point);

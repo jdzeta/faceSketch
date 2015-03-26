@@ -1,6 +1,6 @@
 <div ng-controller="CameraCtrl as camera">
   <md-progress-linear md-mode="indeterminate" ng-show="camera.isLoading"></md-progress-linear>
   <h1>Camera</h1>
-  <md-button ng-click="camera.shoot()" class="md-button md-raised md-primary">shoot</md-button>
+  <md-button ng-click="camera.shoot()" id="camera_shoot" class="md-button md-raised md-primary">shoot</md-button>
   <img ng-src="{{camera.picture}}" height="320"></img>
 </div>

@@ -162,6 +162,13 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+#camera_shoot {
+  display: block;
+  margin: 30px auto;
+  padding: 30px;
+  width: auto;
+}
+
 /*Gallerie*/
 #lib_selected {
   display: block;

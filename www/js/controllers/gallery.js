@@ -1,19 +1,17 @@
 (function(){
   angular
   .module('FaceSketch')
-  .controller('GalleryCtrl', function ($cordovaCamera)
+  .controller('GalleryCtrl', function ($cordovaCamera, auth, facepp, sketch)
   {
 
   	var self = this;
-
-  	self.test = "TEST";
 
   	self.image = {
   		"src" : "",
   		"alt" : "Photo 2 draw selected from library"
   	}
 
-	self.testGetPics = function(){
+	self.getPics = function(){
 		navigator.camera.getPicture(self.onCaptureSuccess, self.onCaptureFail, {
 			allowEdit: true,
 			correctOrientation: true,
@@ -31,9 +29,23 @@
 	    console.log('Failed because: ' + message);
 	}
 
+	self.shoot = function(){
+		if (self.image.src.length > 0) {
+			facepp
+	          .getLandmark(self.image.src)
+	          .then(function(face){
+	            self.isLoading = false;
+	            sketch.setFace(face);
+	            window.location = '#/drawing';
+	          });
+    	} else {
+    		alert("Select photo first");
+    	}
+	}
+
 	// file://storage/sdcard0/Android/data/com.faceplusplus.facesketch/cache/##.jpg
 
-	self.testGetPics();
+	self.getPics();
 
   });
 })();

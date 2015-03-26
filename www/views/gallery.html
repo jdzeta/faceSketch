@@ -1,8 +1,8 @@
 <div id="gallery" ng-controller="GalleryCtrl as gallery">
 	<h1>Gallery</h1>
 	<br>
-	<md-button href="#/picture/gallery">Draw</md-button>
-	<md-button ng-click="gallery.testGetPics()">Change photo</md-button>
+	<md-button ng-click="gallery.shoot()">Draw</md-button>
+	<md-button ng-click="gallery.getPics()">Change photo</md-button>
 	
 	<br>
 	<img id="lib_selected" ng-src="{{gallery.image.src}}" alt="{{gallery.image.alt}}">

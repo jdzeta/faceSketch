@@ -114,10 +114,10 @@
           head.addChild(leftEye);
 
           var leftPupil = paper.Shape.Circle(makePoint(fpp.left_eye_pupil), 5);
-          leftPupil.fillColor = '#222';
+          leftPupil.fillColor = '#222222';
           head.addChild(leftPupil);
 
-          leftEyebrow.strokeColor = '#222';
+          leftEyebrow.strokeColor = '#222222';
           leftEyebrow.strokeWidth = 2;
           leftEyebrow.strokeCap = 'round';
           leftEyebrow.simplify();
@@ -136,10 +136,10 @@
           head.addChild(rightEye);
 
           var rightPupil = paper.Shape.Circle(makePoint(fpp.right_eye_pupil), 5);
-          rightPupil.fillColor = '#222';
+          rightPupil.fillColor = '#222222';
           head.addChild(rightPupil);
 
-          rightEyebrow.strokeColor = '#222';
+          rightEyebrow.strokeColor = '#222222';
           rightEyebrow.strokeWidth = 2;
           rightEyebrow.strokeCap = 'round';
           rightEyebrow.simplify();

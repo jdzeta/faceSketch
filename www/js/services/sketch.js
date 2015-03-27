@@ -28,6 +28,10 @@
           // background
           var bg = paper.Shape.Circle(makePoint(fpp.nose_tip), 125);
           bg.fillColor = '#DF5E52';
+          bg.fitBounds(paper.view.bounds);
+
+          // groups
+          var head = new paper.Group();
 
           // chin
           var leftChin = new paper.Path();
@@ -78,22 +82,30 @@
               chin.lastSegment.point.x,
               leftChin.firstSegment.point.y - (leftChin.firstSegment.point.y * .5)
             );
-          console.log(headTop.y);
-          headTopHandleIn = new paper.Point(-100, -100);
-          headTopHandleOut = new paper.Point(100, 100);
-          var headTopSeg = new paper.Segment(headTop, headTopHandleIn, headTopHandleOut);
+          // console.log(headTop.y);
+          // headTopHandleIn = new paper.Point(-100, -100);
+          // headTopHandleOut = new paper.Point(100, 100);
+          // var headTopSeg = new paper.Segment(headTop, headTopHandleIn, headTopHandleOut);
+          var headTopSeg = new paper.Segment(headTop, null, null);
           var headTopPath = new paper.Path([
               leftChin.firstSegment,
               headTopSeg,
-              rightChin.firstSegment
+              rightChin.firstSegment,
+              chin.firstSegment
             ]);
-          headTopPath.strokeColor = '#111';
+          headTopPath.closed = true;
+          headTopPath.smooth();
+          headTopPath.fillColor = '#F0D8A8';
+          // headTopPath.strokeColor = '#111';
+          head.addChild(headTopPath);
 
           leftChin.join(chin);
           rightChin.join(chin);
-          rightChin.join(headTopPath);
+          // rightChin.join(headTopPath);
           rightChin.join(leftChin);
           rightChin.fillColor = '#F0D8A8';
+
+          head.addChild(rightChin);
 
           // left eye
           addToPath(leftEye, fpp.left_eye_bottom);
@@ -105,14 +117,17 @@
           addToPath(leftEye, fpp.left_eye_right_corner);
           addToPath(leftEye, fpp.left_eye_lower_right_quarter);
           leftEye.fillColor = '#FFF';
+          head.addChild(leftEye);
 
           var leftPupil = paper.Shape.Circle(makePoint(fpp.left_eye_pupil), 5);
           leftPupil.fillColor = '#222';
+          head.addChild(leftPupil);
 
           leftEyebrow.strokeColor = '#222';
           leftEyebrow.strokeWidth = 2;
           leftEyebrow.strokeCap = 'round';
           leftEyebrow.simplify();
+          head.addChild(leftEyebrow);
 
           // right eye
           addToPath(rightEye, fpp.right_eye_bottom);
@@ -124,14 +139,17 @@
           addToPath(rightEye, fpp.right_eye_right_corner);
           addToPath(rightEye, fpp.right_eye_lower_right_quarter);
           rightEye.fillColor = '#FFF';
+          head.addChild(rightEye);
 
           var rightPupil = paper.Shape.Circle(makePoint(fpp.right_eye_pupil), 5);
           rightPupil.fillColor = '#222';
+          head.addChild(rightPupil);
 
           rightEyebrow.strokeColor = '#222';
           rightEyebrow.strokeWidth = 2;
           rightEyebrow.strokeCap = 'round';
           rightEyebrow.simplify();
+          head.addChild(rightEyebrow);
 
           // Nose
           noseLeft.join(noseBottom);
@@ -145,6 +163,9 @@
           noseLeft.fillColor = '#DAB28A';
           noseRight.fillColor = '#DAB28A';
 
+          head.addChild(noseLeft);
+          head.addChild(noseRight);
+
           // Mouth
           addToPath(mouth, fpp.mouth_right_corner);
           addToPath(mouth, fpp.mouth_upper_lip_bottom);
@@ -153,12 +174,15 @@
           mouth.closed = true;
           mouth.strokeColor = '#DAB28A';
           mouth.fillColor = '#DAB28A';
+          head.addChild(mouth);
 
           addToPath(mouthShadow, fpp.mouth_lower_lip_left_contour3);
           addToPath(mouthShadow, fpp.mouth_lower_lip_right_contour3);
           addToPath(mouthShadow, fpp.mouth_lower_lip_bottom);
           mouthShadow.fillColor = '#DAB28A';
+          head.addChild(mouthShadow);
 
+          // head.fitBounds(paper.view.bounds);
           /***
             Helpers
           ***/

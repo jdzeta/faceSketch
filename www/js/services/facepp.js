@@ -13,7 +13,7 @@
             .upload(img, true)
             .then(function (model){
               if(!model.link.match(/^http:\/\/i.imgur.com\//)){
-                return defer.reject();
+                return defer.resolve(null);
               }
               // Get face id from imgur link
               $http
@@ -32,13 +32,15 @@
                       })
                       .error(function (err){
                         console.log(err);
-                        return defer.reject();
+                        return defer.resolve(null);
                       });
+                  } else {
+                    return defer.resolve(null);
                   }
                 })
                 .error(function (err){
                   console.log(err);
-                  return defer.reject();
+                  return defer.resolve(null);
                 });
             });
           return defer.promise;

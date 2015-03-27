@@ -1,7 +1,7 @@
 (function(){
   angular
     .module('FaceSketch')
-    .controller('CameraCtrl', function (auth, facepp, sketch){
+    .controller('CameraCtrl', function (auth, facepp, sketch, $mdDialog){
       var self = this;
       self.ready = false;
       self.isLoading = false;
@@ -21,7 +21,6 @@
       self.shoot = function(){
         console.log('shoot');
         if(typeof(cordova) !== 'undefined' && self.ready){
-          self.isLoading = true;
           navigator.camera.getPicture(onSuccess, onFail, {
             quality: 100,
             destinationType: Camera.DestinationType.DATA_URL,
@@ -34,11 +33,25 @@
 
       function onSuccess(imageData) {
         console.log('success');
+        self.isLoading = true;
         self.picture = "data:image/jpeg;base64," + imageData;
         facepp
           .getLandmark(imageData)
           .then(function(face){
             self.isLoading = false;
+            if(!face){
+              alert = $mdDialog.alert({
+                title: 'Error',
+                content: 'An error occured, please try Again.\nSorry ...',
+                ok: 'Close'
+              });
+              $mdDialog
+                .show( alert )
+                .finally(function() {
+                  alert = undefined;
+                });
+              return;
+            }
             sketch.setFace(face);
             window.location = '#/drawing';
           });

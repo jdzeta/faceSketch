@@ -82,10 +82,6 @@
               chin.lastSegment.point.x,
               leftChin.firstSegment.point.y - (leftChin.firstSegment.point.y * .5)
             );
-          // console.log(headTop.y);
-          // headTopHandleIn = new paper.Point(-100, -100);
-          // headTopHandleOut = new paper.Point(100, 100);
-          // var headTopSeg = new paper.Segment(headTop, headTopHandleIn, headTopHandleOut);
           var headTopSeg = new paper.Segment(headTop, null, null);
           var headTopPath = new paper.Path([
               leftChin.firstSegment,
@@ -96,12 +92,10 @@
           headTopPath.closed = true;
           headTopPath.smooth();
           headTopPath.fillColor = '#F0D8A8';
-          // headTopPath.strokeColor = '#111';
           head.addChild(headTopPath);
 
           leftChin.join(chin);
           rightChin.join(chin);
-          // rightChin.join(headTopPath);
           rightChin.join(leftChin);
           rightChin.fillColor = '#F0D8A8';
 

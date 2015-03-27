@@ -23,6 +23,8 @@
         if(typeof(cordova) !== 'undefined' && self.ready){
           navigator.camera.getPicture(onSuccess, onFail, {
             quality: 100,
+            targetWidth: 320,
+            targetHeight: 460,
             destinationType: Camera.DestinationType.DATA_URL,
             sourceType: Camera.PictureSourceType.CAMERA
           });
@@ -37,12 +39,12 @@
         self.picture = "data:image/jpeg;base64," + imageData;
         facepp
           .getLandmark(imageData)
-          .then(function(face){
+          .then(function (face){
             self.isLoading = false;
             if(!face){
               alert = $mdDialog.alert({
                 title: 'Error',
-                content: 'An error occured, please try Again.\nSorry ...',
+                content: 'An error occured, please try again.\nSorry ...',
                 ok: 'Close'
               });
               $mdDialog

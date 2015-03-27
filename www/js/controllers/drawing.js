@@ -12,7 +12,7 @@
       	function(err){
       		console.log(err);
       	},
-      	document.getElementById('myCanvas')
+      	document.getElementById('canvas');
       );
     });
 })();

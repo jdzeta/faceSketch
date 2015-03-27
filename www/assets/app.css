@@ -162,6 +162,7 @@ h1, h2, h3 {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+/*Camera shoot button*/
 #camera_shoot {
   display: block;
   margin: 30px auto;
@@ -169,10 +170,22 @@ h1, h2, h3 {
   width: auto;
 }
 
+#camera img {
+  display: block;
+  margin: 30px auto;
+  width: 200px;
+}
+
 /*Gallerie*/
 #lib_selected {
   display: block;
   margin: 20px auto;
-  height: 200px;
   width: 200px;
+}
+
+.gbutton {
+  display: block;
+  margin: 30px auto;
+  padding: 30px;
+  width: auto;
 }

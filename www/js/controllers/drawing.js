@@ -5,14 +5,16 @@
       var self = this;
       sketch.drawFace();
 
-      window.canvas2ImagePlugin.saveImageDataToLibrary(
-      	function(msg){
-      		console.log(msg);
-      	},
-      	function(err){
-      		console.log(err);
-      	},
-      	document.getElementById('myCanvas')
-      );
+      self.savePic = function(){
+        window.canvas2ImagePlugin.saveImageDataToLibrary(
+        	function(msg){
+        		console.log(msg);
+        	},
+        	function(err){
+        		console.log(err);
+        	},
+        	document.getElementById('canvas')
+        );
+      }
     });
 })();

@@ -183,7 +183,7 @@ h1, h2, h3 {
   width: 200px;
 }
 
-.gbutton {
+.gbutton, .dbutton {
   display: block;
   margin: 30px auto;
   padding: 30px;
